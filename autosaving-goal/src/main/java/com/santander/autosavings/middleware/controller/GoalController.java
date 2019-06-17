@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.santander.autosavings.middleware.model.Goal;
+import com.santander.autosavings.middleware.domain.Goal;
 import com.santander.autosavings.middleware.response.Response;
 import com.santander.autosavings.middleware.service.GoalService;
 import com.santander.autosavings.middleware.utils.UrlRest;
@@ -39,7 +39,7 @@ public class GoalController {
 		
 		Response<Goal> response = new Response<Goal>();
 		
-		response.setData(goalService.insertGoal(goal));
+		response.setData(goalService.saveGoal(goal));
 				
 		return ResponseEntity.ok(response);
 	}

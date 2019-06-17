@@ -7,7 +7,6 @@
 		<artifactId>autosaving</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
 	<artifactId>autosaving-goal</artifactId>
 	<name>santander-autosaving</name>
 	<description>Microservice Transaction</description>

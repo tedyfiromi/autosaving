@@ -19,8 +19,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.santander.autosavings.middleware.model.Goal;
-import com.santander.autosavings.middleware.model.TransactionGoal;
+import com.santander.autosavings.middleware.domain.Goal;
+import com.santander.autosavings.middleware.domain.TransactionGoal;
 import com.santander.autosavings.middleware.service.GoalService;
 import com.santander.autosavings.middleware.utils.UrlRest;
 
@@ -46,8 +46,8 @@ public class GoalTests {
 		transactionsFrance.add(new TransactionGoal("5cf58d24d817ae5a10a7233f", 80.00));			
 		transactionsItaly.add(new TransactionGoal("5cf6c1c5d817ae5e28d094f7", 75.00));
 		
-		goalFrance = new Goal("5cf58d24d817ae5a10a78b3f", "France", 2000.0, 150.0, 0.0, null, null, transactionsFrance);
-		goalItaly = new Goal("5cf6c1c5d817ae5e28d094fc", "Italy", 1000.0, 200.0, 0.0, null, null, transactionsItaly);
+		//goalFrance = new Goal("5cf58d24d817ae5a10a78b3f", "France", 2000.0, 150.0, 0.0, null, null, transactionsFrance);
+		//goalItaly = new Goal("5cf6c1c5d817ae5e28d094fc", "Italy", 1000.0, 200.0, 0.0, null, null, transactionsItaly);
 	
 	
 		
