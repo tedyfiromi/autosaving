@@ -12,15 +12,13 @@ import com.santander.autosavings.middleware.model.Goal;
 import com.santander.autosavings.middleware.model.OperationVO;
 import com.santander.autosavings.middleware.model.TransactionGoal;
 import com.santander.autosavings.middleware.repository.TransactionGoalRepository;
+import com.santander.autosavings.middleware.utils.UrlRest;
 
 @Service
 public class TransactionGoalService {
 
 	@Autowired
 	private TransactionGoalRepository transactGoalRepository;
-
-	public final static String GOAL_BY_ID = "http://localhost:8090/santander/goal/{id}";
-	public final static String GOAL_UPDATE = "http://localhost:8090/santander/goal/update";
 	public List<TransactionGoal> listTransactions = new ArrayList<>();
 	public TransactionGoal transaction;
 	public TransactionGoal transactioned;
@@ -99,12 +97,12 @@ public class TransactionGoalService {
 		params.put("id", addTransaction.getIdGoal());
 
 		RestTemplate restTempGoalId = new RestTemplate();
-		return restTempGoalId.getForObject(GOAL_BY_ID, Goal.class, params);
+		return restTempGoalId.getForObject( UrlRest.URL_BASE + UrlRest.GOAL + UrlRest.FIND_BY_ID , Goal.class, params);
 	}
 
 	public Goal clientUpdateGoal(Goal goal) {
 		RestTemplate restTempGoalId = new RestTemplate();
-		return restTempGoalId.postForObject(GOAL_UPDATE, goal, Goal.class);
+		return restTempGoalId.postForObject(UrlRest.URL_BASE + UrlRest.GOAL + UrlRest.UPDATE, goal, Goal.class);
 	}
 
 }

@@ -15,24 +15,21 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(UrlRest.BASE)
+@RequestMapping(UrlRest.MONEY)
 @Api(value="Transaction Monetary")
 public class TransactionGoalController {
-	
-	public static final String ADD_MONEY = "money/add";
-	public static final String WITHDRAW_MONEY = "money/withdraw";
 	
 	@Autowired
 	public TransactionGoalService transactionGoalService;
 	
 	@ApiOperation(value="Post Add money transaction", response=String.class, notes="This operation save in mongodb a new transaction")
-	@PostMapping(value=ADD_MONEY)
+	@PostMapping(value=UrlRest.ADD)
 	public TransactionGoal addMoney(@RequestBody OperationVO operation){
 		return transactionGoalService.addMoney(operation);
 	}	
 	
 	@ApiOperation(value="Post WithDraw money transaction", response=String.class, notes="This operation save in mongodb a new transaction")
-	@PostMapping(value=WITHDRAW_MONEY)
+	@PostMapping(value=UrlRest.WITHDRAW)
 	public TransactionGoal withDrawMoney(@RequestBody OperationVO operation) {
 		return transactionGoalService.withDrawMoney(operation);		
 	}	

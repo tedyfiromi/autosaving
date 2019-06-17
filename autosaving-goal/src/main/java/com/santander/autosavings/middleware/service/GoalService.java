@@ -19,7 +19,6 @@ public class GoalService {
 		return goalRepository.findAll();
 	}
 	
-	
 	public Goal insertGoal(Goal goal) {
 		return goalRepository.insert(goal);
 	}
@@ -31,6 +30,14 @@ public class GoalService {
 	
 	public Goal findGoalById(String idGoal) {
 		return goalRepository.findById(idGoal).orElseThrow(() -> new ObjectNotFoundException(idGoal));
+	}
+
+	public Goal updateGoal(Goal goal) {
+		return goalRepository.save(goal);
+	}
+	
+	public List<Goal> getListGoalsByUser(String agency, String account) {
+		return null;
 	}
 
 }
