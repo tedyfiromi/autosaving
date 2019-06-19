@@ -4,35 +4,33 @@ import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
-public class TransactionGoal implements Serializable{
+public class GoalHistory implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	public String idTransactionGoal;
+	public String idHistoryGoal;
 	public double value;
 		
 	
-	public TransactionGoal() {		
+	public GoalHistory() {		
 	}
 
-	public TransactionGoal(String idTransaction, double value) {
+	public GoalHistory(String idHistoryGoal, double value) {
 		super();
-		this.idTransactionGoal = idTransaction;
+		this.idHistoryGoal = idHistoryGoal;
 		this.value = value;
 
 	}
 	
-	public String getIdTransactionGoal() {
-		return idTransactionGoal;
+	public String getIdHistoryGoal() {
+		return idHistoryGoal;
 	}
 
-	public void setIdTransactionGoal(String idTransactionGoal) {
-		this.idTransactionGoal = idTransactionGoal;
+	public void setIdHistoryGoal(String idHistoryGoal) {
+		this.idHistoryGoal = idHistoryGoal;
 	}
 
 	public double getValue() {

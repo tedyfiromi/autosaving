@@ -32,10 +32,10 @@ public class Goal implements Serializable{
 	public LocalDate updatedAt;
 	
 	@DBRef
-	public List<TransactionGoal> transactionGoals = new ArrayList<>();
+	public List<GoalHistory> goalHistories = new ArrayList<>();
 	
 	public Goal(String id, String title, double total, double saved, double recorrence, LocalDate createdAt,
-			LocalDate updatedAt, List<TransactionGoal> transactionGoals) {
+			LocalDate updatedAt, List<GoalHistory> goalHistories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -44,7 +44,7 @@ public class Goal implements Serializable{
 		this.recorrence = recorrence;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.transactionGoals = transactionGoals;
+		this.goalHistories = goalHistories;
 	}
 
 	public Goal() {
@@ -107,12 +107,12 @@ public class Goal implements Serializable{
 		this.updatedAt = updatedAt;
 	}
 
-	public List<TransactionGoal> getTransactionGoals() {
-		return transactionGoals;
+	public List<GoalHistory> getTransactionGoals() {
+		return goalHistories;
 	}
 
-	public void setTransactionGoal(List<TransactionGoal> transactionGoals) {
-		this.transactionGoals = transactionGoals;
+	public void setTransactionGoal(List<GoalHistory> goalHistories) {
+		this.goalHistories = goalHistories;
 	}
 	
 }
