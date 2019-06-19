@@ -2,52 +2,45 @@ package com.santander.autosavings.middleware.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Document
+@Document(collection="goal")
 public class Goal implements Serializable{
 	
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -839854161900593105L;
 	@Id
-	private String id;
-	
-	@DBRef
-	private User user;
-	
+	private String id;		
 	private String title;
 	private double total;
 	private double saved;
-	private double recorrence;
-	private boolean active;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private LocalDate createdAt;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private LocalDate updatedAt;
-	
+	private double recurrence;
+	private boolean active = true;
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd HH:mm:ss")
+	private LocalDateTime createdAt;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd HH:mm:ss")
+	private LocalDateTime updatedAt;	
 	
 	@DBRef
 	private List<TransactionGoal> transactionGoals = new ArrayList<>();
 	
-	public Goal(String id, String title, double total, double saved, double recorrence, LocalDate createdAt,
-			LocalDate updatedAt, List<TransactionGoal> transactionGoals) {
+	public Goal(String id, String title, double total, double saved, double recurrence, LocalDateTime createdAt,
+			LocalDateTime updatedAt, List<TransactionGoal> transactionGoals) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.total = total;
 		this.saved = saved;
-		this.recorrence = recorrence;
+		this.recurrence = recurrence;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.transactionGoals = transactionGoals;
@@ -89,27 +82,27 @@ public class Goal implements Serializable{
 		this.saved = saved;
 	}
 
-	public double getRecorrence() {
-		return recorrence;
+	public double getRecurrence() {
+		return recurrence;
 	}
 
-	public void setRecorrence(double recorrence) {
-		this.recorrence = recorrence;
+	public void setRecurrence(double recurrence) {
+		this.recurrence = recurrence;
 	}
 
-	public LocalDate getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public LocalDate getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(LocalDate updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
@@ -118,6 +111,18 @@ public class Goal implements Serializable{
 	}
 
 	public void setTransactionGoal(List<TransactionGoal> transactionGoals) {
+		this.transactionGoals = transactionGoals;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setTransactionGoals(List<TransactionGoal> transactionGoals) {
 		this.transactionGoals = transactionGoals;
 	}
 	

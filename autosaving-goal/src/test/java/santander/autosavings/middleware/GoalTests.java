@@ -25,7 +25,7 @@ import com.santander.autosavings.middleware.service.GoalService;
 import com.santander.autosavings.middleware.utils.UrlRest;
 
 
-@SpringBootConfiguration()
+@SpringBootConfiguration
 @SpringBootTest
 public class GoalTests {
 	
@@ -67,23 +67,5 @@ public class GoalTests {
 		assertEquals(2, goals.size());
 	}
 	
-	@Test
-	public void testListGoalsURIaccess() throws URISyntaxException
-	{
-	    RestTemplate restTemplate = new RestTemplate();
-
-	    final String baseUrl = UrlRest.URL_BASE + UrlRest.BASE + UrlRest.GOAL_LIST;
-	    URI uri = new URI(baseUrl);
-
-	    ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
-
-	    assertEquals(200, result.getStatusCodeValue());
-	    assertEquals(true, result.getBody().contains("id"));
-	}
-	
-	@Test
-	public void testCreateGoal() {
-		
-	}
 
 }
