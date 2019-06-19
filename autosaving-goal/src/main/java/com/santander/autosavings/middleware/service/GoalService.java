@@ -1,5 +1,7 @@
 package com.santander.autosavings.middleware.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,15 @@ public class GoalService {
 	}
 	
 	public Goal insertGoal(Goal goal) {
+		if(goal.getCreatedAt()==null) {
+			goal.setCreatedAt(LocalDateTime.now());
+		}		
 		return goalRepository.insert(goal);
 	}
 	
+	public Goal updateGoal(Goal goal) {
+		return goalRepository.save(goal);
+	}	
 	
 	public Goal saveGoal(Goal goal) {
 		return goalRepository.save(goal);
@@ -31,13 +39,5 @@ public class GoalService {
 	public Goal findGoalById(String idGoal) {
 		return goalRepository.findById(idGoal).orElseThrow(() -> new ObjectNotFoundException(idGoal));
 	}
-
-	public Goal updateGoal(Goal goal) {
-		return goalRepository.save(goal);
-	}
 	
-	public List<Goal> getListGoalsByUser(String agency, String account) {
-		return null;
-	}
-
 }

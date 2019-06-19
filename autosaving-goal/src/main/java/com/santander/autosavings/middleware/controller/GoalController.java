@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,29 +34,21 @@ public class GoalController {
 	public ResponseEntity<List<Goal>> getListGoals() {
 		return ResponseEntity.ok(goalService.getListAllGoals());
 	}
-	
-
-	@ApiOperation(value = "Get List of Goals By Agency and Account", response = String.class, notes = "This operation return the list of all goals")
-	@GetMapping(value = UrlRest.LIST_BY_USER)
-	public ResponseEntity<List<Goal>> getListGoalsByUser(@RequestBody String agency, String account) {
-		return ResponseEntity.ok(goalService.getListGoalsByUser(agency, account));
-	}
-	
-
-	@ApiOperation(value = "Create Goal", response = String.class, notes = "This operation be create a new goal")
-	@PostMapping(value = UrlRest.INSERT)
-	public ResponseEntity<Goal> createGoal(@RequestBody Goal goal) {
-		return ResponseEntity.ok(goalService.insertGoal(goal));
-	}
 
 	@ApiOperation(value = "Gel Goal By Id", response = String.class, notes = "This operation show a goal by id")
 	@GetMapping(value = UrlRest.FIND_BY_ID)
 	public ResponseEntity<Goal> getGoalById(@PathVariable("id") String idGoal) {
 		return ResponseEntity.ok(goalService.findGoalById(idGoal));
+	}	
+	
+	@ApiOperation(value = "Insert Goal", response = String.class, notes = "This operation be insert a new goal")
+	@PostMapping(value = UrlRest.INSERT)
+	public ResponseEntity<Goal> createGoal(@RequestBody Goal goal) {
+		return ResponseEntity.ok(goalService.insertGoal(goal));
 	}
 
 	@ApiOperation(value = "Update Goal", response = String.class, notes = "This operation update a goal")
-	@PostMapping(value = UrlRest.UPDATE)
+	@PutMapping(value = UrlRest.UPDATE)
 	public ResponseEntity<Goal> updateGoal(@RequestBody Goal goal) {
 		return ResponseEntity.ok(goalService.updateGoal(goal));
 	}
