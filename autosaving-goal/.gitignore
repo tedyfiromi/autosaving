@@ -22,7 +22,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-#general files and directories
+# general files and directories
 /target/
 *.classpath
 *.project
