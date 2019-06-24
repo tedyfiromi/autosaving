@@ -9,10 +9,8 @@
 		<relativePath />
 	</parent>
 	<groupId>com.santander.globile</groupId>
-	<artifactId>global</artifactId>
+	<artifactId>commons</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -21,43 +19,33 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+		<spring-fox.version>2.9.2</spring-fox.version>
 	</properties>
 
-	<modules>
-		<module>commons</module>
-		<module>goal</module>
-		<module>transaction</module>
-        <!-- module>test</module -->
-        <module>schedule</module>
-	</modules>
-
 	<dependencies>
-        <!-- Commons -->
-        <dependency>
-			<groupId>com.santander.globile</groupId>
-			<artifactId>commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<!-- Spring Boot -->
+		<!-- Spring Fox -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${spring-fox.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${spring-fox.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- MongoDB -->
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-
 </project>
