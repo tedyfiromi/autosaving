@@ -7,5 +7,7 @@ import com.santander.commons.model.GoalHistory;
 
 @Repository
 public interface GoalTransactionRepository extends MongoRepository<GoalHistory, String>{
+	
+	public GoalHistory findByIdGoal(String goal);
 
 }

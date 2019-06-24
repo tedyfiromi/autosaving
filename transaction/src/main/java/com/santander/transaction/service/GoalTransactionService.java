@@ -1,6 +1,5 @@
 package com.santander.transaction.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.santander.commons.model.Goal;
 import com.santander.commons.model.GoalHistory;
 import com.santander.commons.model.OperationVO;
 import com.santander.commons.utils.UrlRest;
-import com.santander.transaction.model.Goal;
 import com.santander.transaction.repository.GoalTransactionRepository;
 
 @Service
@@ -20,6 +19,8 @@ public class GoalTransactionService {
 
 	@Autowired
 	private GoalTransactionRepository transactGoalRepository;
+	@Autowired
+	private GoalTransactionService goalTransactionService;
 	public List<GoalHistory> listTransactions;
 	public GoalHistory transaction;
 	public GoalHistory transactioned;
@@ -30,15 +31,17 @@ public class GoalTransactionService {
 		if (amountIsAvailable(operation.getValue(), operation.getAccount())) {
 
 			Goal goal = clientGoalById(operation);
-			List<GoalHistory> transactions = goal.getTransactionGoals();
+			
+			GoalHistory goalHistory = goalTransactionService.getGoalHistoryByIdGoal(goal.getId());		
+//			//List<GoalHistory> goalHistories = goal.getGoalHistory();
+//
+//			GoalHistory transactioned = saveTransaction(operation.value);
+//			goalHistories.add(transactioned);
+//
+//			goal.setGoalHistory(goalHistories);
+//			Goal goalEdited = addInGoal(goal, operation);
 
-			GoalHistory transactioned = saveTransaction(operation.value);
-			transactions.add(transactioned);
-
-			goal.setTransactionGoal(transactions);
-			Goal goalEdited = addInGoal(goal, operation);
-
-			clientUpdateGoal(goalEdited);
+//			clientUpdateGoal(goalEdited);
 		} else {
 			throw new RuntimeException("TODO");
 		}
@@ -50,33 +53,37 @@ public class GoalTransactionService {
 
 		if (amountIsAvailable(operation.getValue(), operation.getAccount())) {
 
-			Goal goal = clientGoalById(operation);
-			List<GoalHistory> transactions = goal.getTransactionGoals();
+//			Goal goal = clientGoalById(operation);
+//			//List<GoalHistory> goalHistories = goal.getGoalHistory();
+//
+//			GoalHistory transactioned = saveTransaction(operation.value);
+//			//goalHistories.add(transactioned);
 
-			GoalHistory transactioned = saveTransaction(operation.value);
-			transactions.add(transactioned);
-
-			goal.setTransactionGoal(transactions);
-			Goal goalEdited = withDrawInGoal(goal, operation);
-
-			clientUpdateGoal(goalEdited);
+			//goal.setGoalHistory(goalHistories);
+//			Goal goalEdited = withDrawInGoal(goal, operation);
+//
+//			clientUpdateGoal(goalEdited);
 
 		} else {
 			throw new RuntimeException("TODO");
 		}
 		return transactioned;
 	}
-
-	public GoalHistory saveTransaction(double value) {
-		GoalHistory transaction = setValueInTransaction(value);
-		return transactGoalRepository.save(transaction);
+	
+	public GoalHistory getGoalHistoryByIdGoal(String idGoal) {
+		return transactGoalRepository.findByIdGoal(idGoal);
 	}
 
-	public GoalHistory setValueInTransaction(double value) {
-		GoalHistory transaction = new GoalHistory();
-		transaction.setValue(value);
-		return transaction;
-	}
+//	public GoalHistory saveTransaction(double value) {
+//		GoalHistory transaction = setValueInTransaction(value);
+//		return transactGoalRepository.save(transaction);
+//	}
+
+//	public GoalHistory setValueInTransaction(double value) {
+//		GoalHistory transaction = new GoalHistory();
+//		transaction.setValue(value);
+//		return transaction;
+//	}
 
 	public Goal addInGoal(Goal goal, OperationVO operation) {
 		goal.setSaved(calcAdd(goal.getSaved(), operation.getValue()));

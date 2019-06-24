@@ -1,44 +1,43 @@
 package com.santander.commons.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
 public class GoalHistory implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	@Id
-	public String idHistoryGoal;
-	public double value;
-		
-	
-	public GoalHistory() {		
-	}
 
-	public GoalHistory(String idHistoryGoal, double value) {
+	private String idGoal;	
+	
+	@DBRef
+	private List<Transaction> transactions = new ArrayList<Transaction>();
+	
+	public GoalHistory(String idGoal, List<Transaction> transactions) {
 		super();
-		this.idHistoryGoal = idHistoryGoal;
-		this.value = value;
-
-	}
-	
-	public String getIdHistoryGoal() {
-		return idHistoryGoal;
+		this.idGoal = idGoal;
+		this.transactions = transactions;
 	}
 
-	public void setIdHistoryGoal(String idHistoryGoal) {
-		this.idHistoryGoal = idHistoryGoal;
+	public String getIdGoal() {
+		return idGoal;
 	}
 
-	public double getValue() {
-		return value;
+	public void setIdGoal(String idGoal) {
+		this.idGoal = idGoal;
 	}
 
-	public void setValue(double value) {
-		this.value = value;
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}	
+	
 
 }
