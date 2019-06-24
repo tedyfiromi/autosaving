@@ -23,16 +23,13 @@ public class Goal implements Serializable{
 	private double recurrence;
 	private boolean active = true;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd@HH:mm:ss")
 	private LocalDateTime createdAt;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd@HH:mm:ss")
 	private LocalDateTime updatedAt;	
 	
-	@DBRef
-	private List<TransactionGoal> transactionGoals = new ArrayList<TransactionGoal>();
-	
 	public Goal(String id, String title, double total, double saved, double recurrence, LocalDateTime createdAt,
-			LocalDateTime updatedAt, List<TransactionGoal> transactionGoals) {
+			LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -41,7 +38,6 @@ public class Goal implements Serializable{
 		this.recurrence = recurrence;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.transactionGoals = transactionGoals;
 	}
 
 	public Goal() {
@@ -104,14 +100,6 @@ public class Goal implements Serializable{
 		this.updatedAt = updatedAt;
 	}
 
-	public List<TransactionGoal> getTransactionGoals() {
-		return transactionGoals;
-	}
-
-	public void setTransactionGoal(List<TransactionGoal> transactionGoals) {
-		this.transactionGoals = transactionGoals;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
@@ -120,8 +108,4 @@ public class Goal implements Serializable{
 		this.active = active;
 	}
 
-	public void setTransactionGoals(List<TransactionGoal> transactionGoals) {
-		this.transactionGoals = transactionGoals;
-	}
-	
 }

@@ -16,7 +16,7 @@ public class SwaggerConfigure {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("santander.autosavins.middlerware "))
+                .apis(RequestHandlerSelectors.basePackage("com.santander"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(infoApi().build());
